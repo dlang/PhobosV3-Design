@@ -70,7 +70,7 @@ By making the library header only, it becomes inured against variations in compi
 
 Names should follow the existing naming guidelines here: [D Style Guide](https://dlang.org/dstyle.html)
 
-When selecting a name for a type or method, a quick survey of how other popular languages name the equivalent type/method should be performed. For example, in .NET and Java, the `currTime()` method would be named `now()`. Using the same names as popular languages reduces the friction experienced by the engineer when migrating to D. Be prepared to provide examples from your survey in the Pull Request.
+When selecting a name for a type or method, a quick survey of how other popular languages name the equivalent type/method should be performed. For example, in .NET and Java, the `currTime()` method would be named `now()`. Using the same names as popular languages reduces the friction experienced by the engineer when migrating to D. Be prepared to provide examples from your survey in the Pull Request. In cases where there is no clear agreement or two examples are equally represented and alias *may* be appropriate for the purposes of moving past the block. 
 
 Prefer whole words over abbreviations and dropped letters. For example, prefer `writeLine` over `writeln`. Choose the shortest name that accurately describes the feature. Abbreviations are acceptable where the abbreviation is in common usage and/or would result in a cumbersome name.
 
