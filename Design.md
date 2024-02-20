@@ -31,93 +31,95 @@ Therefore, v2 will continue to be supported. A user must be able to mix and matc
 
 The existing roots of `core` for the Runtime, `etc` for C Interfaces, and `std` for the V2 Standard Library are to remain reserved for the foreseeable future. Both V2 and V3 will share usage of the `core` and `etc` roots. The `std` root is to be maintained for compatibility but no new features will be added.
 
-#### Use multiple package prefixes/roots
+#### Hybrid single-root/multi-trunk package design
 
-Phobos V3 will use multiple package roots. This allows us to keep the old `std` package root while splitting up the new library into smaller, more manageable, components. Splitting the library into multiple roots provides the following benefits:
+Phobos V3 will use a single package root `lib.` with multiple 'trunk' packages. This allows us to keep the old `std` package root while splitting up the new library into smaller, more manageable, components. Splitting the library into multiple packages provides the following benefits:
 
 1. Only pay for what you use. Different roots can be compiled as separate static/shared libraries and linked as needed, reducing the overall weight of executables. This offers some relief to the long standing community request to break Phobos into individual packages. While we do not agree with atomizing Phobos to the extreme degree of one package per module, multiple package roots allow us to achieve some of that goal in a logical manner.
-2. Multiple roots allow for layering components. The core roots form a foundation upon which to build higher-level packages.
-3. Multiple roots allow for an expanded feature set without adding to package depth.
-4. Not all roots need to be implemented for a given platform to be considered "supported". If only the core roots are required for a platform to be considered supported it becomes significantly less complicated to port D to new platforms.
-5. Rules can be applied differently to core vs. non-core roots. For example, a possible rule could be that core roots may not throw exceptions under any circumstance, but non-core roots can. This is not intended to imply that throwing exceptions is encouraged, merely made available to allow more implementation flexibility for more complex constructs.
-6. The old `std` root can continue to be maintained and built independently of the new Phobos roots.
+2. Multiple trunks allow for layering components. The core roots form a foundation upon which to build higher-level packages.
+3. Multiple trunks allow for an expanded feature set without adding to package depth.
+4. Not all trunks need to be implemented for a given platform to be considered "supported". If only the core roots are required for a platform to be considered supported it becomes significantly less complicated to port D to new platforms.
+5. Rules can be applied differently to core vs. non-core roots/trunks. For example, a possible rule could be that core roots/trunks may not throw exceptions under any circumstance, but non-core roots/trunks can. This is not intended to imply that throwing exceptions is encouraged, merely made available to allow more implementation flexibility for more complex constructs.
+6. The old `std` root can continue to be maintained and built independently of the new Phobos root.
+7. Multiple trunk packages allows Phobos to expand normally without running into the 64k DLL symbol limit on Windows.
 
-Currently the core roots for Phobos V3 are `core`, `etc`, and `sys`. As a rule, Core roots *MUST NOT* import from non-core roots.
+Currently the core roots/trunks for Phobos V3 are `core`, `etc`, and `lib.sys`. As a rule, the `lib.sys` trunk is not allowed to import from non-core trunks.
 
 Proposed Package Structure (Existing Modules Only):
 ```
 core.*
 etc.*
 std.*
-sys
-| algorithm
-  | comparison
-  | iteration
-  | mutation
-  | searching
-  | setops
-  | sorting
-| array
-| bigint
-| bitmanip
-| checkedint
-| compiler
-| complex
-| conv
-| datetime
-  | date
-  | interval
-  | stopwatch
-  | systime
-  | timezone
-| demangle
-| exception
-| functional
-| getopt
-| int128
-| io (stdio)
-  | file
-  | mmfile
-  | path
-| math
-  | algebraic
-  | constants
-  | exponential
-  | hardware
-  | operations
-  | remainder
-  | rounding
+lib.sys
+  | algorithm
+    | comparison
+    | iteration
+    | mutation
+    | searching
+    | setops
+    | sorting
+  | array
+  | bigint
+  | bitmanip
+  | checkedint
+  | compiler
+  | complex
+  | conv
+  | datetime
+    | date
+    | interval
+    | stopwatch
+    | systime
+    | timezone
+  | demangle
+  | exception
+  | functional
+  | getopt
+  | int128
+  | io
+    | console (stdio)
+    | file
+    | mmfile
+    | path
+  | math
+    | algebraic
+    | constants
+    | exponential
+    | hardware
+    | operations
+    | remainder
+    | rounding
+    | traits
+    | trigonometry
+    | special
+  | meta
+  | numeric
+  | outbuffer
+  | process
+  | random
+  | range
+  | signals
+  | stdint
+  | string
+  | sumtype
+  | system
   | traits
-  | trigonometry
-  | special
-| meta
-| numeric
-| outbuffer
-| process
-| random
-| range
-| signals
-| stdint
-| string
-| sumtype
-| system
-| traits
-| typecons
-| uuid
-| variant
-data 
-| base64
-| csv
-| json
-| zip
-text
-| ascii
-| encoding
-| uni
-| utf
-net
-| socket
-| uri
+  | typecons
+  | uuid
+  | variant
+lib.data
+  | base64
+  | csv
+  | json
+  | zip
+lib.text
+  | ascii
+  | encoding
+  | uni
+  | utf
+lib.net
+  | socket
+  | uri
 ```
 
 **Open Questions**
