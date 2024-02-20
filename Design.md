@@ -76,6 +76,10 @@ Prefer whole words over abbreviations and dropped letters. For example, prefer `
 
 Phobos will use a 100 soft and 120 hard character column limit. This will be enforced via `dfmt` and `.editorconfig` files provided with the distribution.
 
+### DUB Only Builds
+
+The current Phobos build process is convoluted and relies on old or niche tools. This makes the process of building Phobos tedious and discourages active community participation. DUB will be the only tool needed to build and test Phobos V3. Building and testing Phobos V3 should be as simple as issuing a `dub test` command. The completely CI process for PhobosV3 will be a single build script that the developer can comprehend and execute easily.
+
 ## Specific Issues
 
 ### std.stdio
