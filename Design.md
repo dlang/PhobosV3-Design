@@ -78,7 +78,13 @@ Phobos will use a 100 soft and 120 hard character column limit. This will be enf
 
 ### DUB Only Builds
 
-The current Phobos build process is convoluted and relies on old or niche tools. This makes the process of building Phobos tedious and discourages active community participation. DUB will be the only tool needed to build and test Phobos V3. Building and testing Phobos V3 should be as simple as issuing a `dub test` command. The completely CI process for PhobosV3 will be a single build script that the developer can comprehend and execute easily.
+The current Phobos build process is convoluted and relies on old or niche tools. This makes the process of building Phobos tedious and discourages active community participation. DUB will be the only tool needed to build and test Phobos V3. Building and testing Phobos V3 should be as simple as issuing a `dub test` command. The completely CI process for Phobos3 will be a single build script that the developer can comprehend and execute easily.
+
+### Versioning and Release Schedule
+
+Phobos3 versions will be versioned and distributed on the same schedule as the corresponding Compiler Edition. This allows Phobos to adopt the latest features from the in-development edition during the development of that edition. However, while Phobos will follow the same release schedule as the compiler editions, Phobos itself will not use the 'edition' terminology and will instead retain the use of the term 'version'.
+
+Phobos will use a slightly modified SemVer. The major version will be increment with each release that is tied to Phobos, the minor version will increment with the monthly compiler releases, and the patch version will be incremented on any out-of-band bugfix releases that occur.
 
 ## Specific Issues
 
