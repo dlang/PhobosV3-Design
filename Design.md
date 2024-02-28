@@ -45,9 +45,8 @@ Since v2 was designed, the programming world has more or less standardized on UT
 
 v2 throws an Exception when encountering invalid Unicode. Throwing an Exception entails using the GC, meaning string code cannot be `@nogc` nor `nothrow`.
 Besides, common processing of strings means being tolerant of invalid Unicode rather than failing. For example, invalid Unicode is commonplace in web pages, and throwing an Exception when rendering such pages is unacceptable.
-Hence, invalid Unicode will be ignored when practical, and if not practical the Unicode replacement character code point will be substituted for the invalid Unicode.
-
-If the user chooses, a separate adapter can be used to detect invalid Unicode and handle it as desired.
+Hence, problems with invalid Unicode will be avoided entirely: Phobos will assume that `string` always contains valid UTF-8, and will abort the program otherwise (as with a division by zero).
+Applications which need to handle untrusted data should use functions such as `std.utf.validate` (which return a `string` from `ubyte[]` only when it is valid UTF-8), or by-code-point decoding which reports errors for individual decoding operations.
 
 ### No Memory Allocation
 
