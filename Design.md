@@ -49,7 +49,7 @@ Hence, invalid Unicode will be ignored when practical, and if not practical the 
 
 If the user chooses, a separate adapter can be used to detect invalid Unicode and handle it as desired.
 
-### No Memory Allocation
+### Minimize Memory Allocation
 
 Enormous troubles and inefficiencies stem from general purpose library code allocating memory as the library sees fit. This makes the library code far less usable. Memory allocation strategies should be decided upon by the user of the library, not the library.
 
@@ -57,7 +57,7 @@ The easiest way to achieve this is to design the library to not use memory alloc
 
 Library routines may allocate memory internally, but not in a way that affects the user.
 
-### No Exceptions
+### Minimize Exceptions
 
 Exceptions are inefficient and use the GC. Of course, they cannot be used in `nothrow` code. Examine each use of an Exception to see if it can be designed out of existence, like the Replacement Character method above. Design the return value such that an error is not necessary - for example, a string search function can return an empty string if not found rather than throw an Exception.
 Investigate the use of Option/Sum types for error returns.
