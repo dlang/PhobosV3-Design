@@ -203,3 +203,11 @@ Does way, way too much. It's incomprehensible. Should be redesigned using buildi
 ### isXXXX templates
 
 Are generally very hard to figure out what they do, such as `isSomeChar`. What the heck does that mean? The string ones are even worse.
+
+## Guidelines for Reviewers
+
+### Silence is Approval
+One of the complaints the community has made about D in general and Phobos in particular is that many PRs go un-reviewed and are left to rot. Therefore, in Phobos 3, if you are listed as a reviewer on a PR and you do not respond to a within 24 hours to a pull request, your silence will be considered an approval. If the required reviewer is unavailable for any reason (ex: vacation, emergency, etc.), another reviewer can bypass them. Once they return they can provide comments and submit PR's to address any feedback on the PR's assigned to them that they missed.
+
+### Disagreement Without Providing a Fix or Alternative is Approval
+Another major community complaint is that PR's are routinely abandoned because somebody disagrees with how the PR does something, or believes that it will cause a problem, causing the PR to stall out. While the reviewer may be correct, that cannot be sufficient reason to block a PR. The disagreeing reviewer must either provide a PR/patch to the primary PR or provide an alternative implementation in a new PR that addresses their concern. The disagreeing reviewer must ensure that their PR references the original PR. If no alternatives are provided, the PR will be merged and the disagreeing reviewer is welcome to base their future alternative implementation on the merged work.
