@@ -43,14 +43,14 @@ Phobos V3 will use a single package root `lib.` with multiple 'trunk' packages. 
 6. The old `std` root can continue to be maintained and built independently of the new Phobos root.
 7. Multiple trunk packages allows Phobos to expand normally without running into the 64k DLL symbol limit on Windows.
 
-Currently the core roots/trunks for Phobos V3 are `core`, `etc`, and `lib.sys`. As a rule, the `lib.sys` trunk is not allowed to import from non-core trunks.
+Currently the core roots/trunks for Phobos V3 are `core`, `etc`, and `phobos.sys`. As a rule, the `phobos.sys` trunk is not allowed to import from non-core trunks.
 
 Proposed Package Structure (Existing Modules Only):
 ```
 core.*
 etc.*
 std.*
-lib.sys
+phobos.sys
   | algorithm
     | comparison
     | iteration
@@ -107,17 +107,17 @@ lib.sys
   | typecons
   | uuid
   | variant
-lib.data
+phobos.data
   | base64
   | csv
   | json
   | zip
-lib.text
+phobos.text
   | ascii
   | encoding
   | uni
   | utf
-lib.net
+phobos.net
   | socket
   | uri
 ```
