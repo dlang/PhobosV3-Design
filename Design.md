@@ -33,7 +33,7 @@ The existing roots of `core` for the Runtime, `etc` for C Interfaces, and `std` 
 
 #### Hybrid single-root/multi-trunk package design
 
-Phobos V3 will use a single package root `lib.` with multiple 'trunk' packages. This allows us to keep the old `std` package root while splitting up the new library into smaller, more manageable, components. Splitting the library into multiple packages provides the following benefits:
+Phobos V3 will use a single package root `phobos.` with multiple 'trunk' packages. This allows us to keep the old `std` package root while splitting up the new library into smaller, more manageable, components. Splitting the library into multiple packages provides the following benefits:
 
 1. Only pay for what you use. Different roots can be compiled as separate static/shared libraries and linked as needed, reducing the overall weight of executables. This offers some relief to the long standing community request to break Phobos into individual packages. While we do not agree with atomizing Phobos to the extreme degree of one package per module, multiple package roots allow us to achieve some of that goal in a logical manner.
 2. Multiple trunks allow for layering components. The core roots form a foundation upon which to build higher-level packages.
